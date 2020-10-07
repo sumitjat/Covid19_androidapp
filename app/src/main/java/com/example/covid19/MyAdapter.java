@@ -43,15 +43,19 @@ public class MyAdapter extends RecyclerView.Adapter {
 
     }
 
+    //https://www.tutorialspoint.com/android-working-with-recycler-view
 
-    public void onBindViewHolder(MyViewHolder viewHolder, int position)
-    {
-        viewHolder.t1.setText(statename.get(1));
-        viewHolder.t2.setText(activecase.get(1));
-        viewHolder.t3.setText(confirmedcase.get(1));
-        viewHolder.t4.setText(recoveredcase.get(1));
 
-    }
+
+
+//    public void onBindViewHolder(MyViewHolder viewHolder, int position)
+//    {
+//        viewHolder.t1.setText(statename.get(1));
+//        viewHolder.t2.setText(activecase.get(1));
+//        viewHolder.t3.setText(confirmedcase.get(1));
+//        viewHolder.t4.setText(recoveredcase.get(1));
+//
+//    }
 
     @Override
     public int getItemCount() {
