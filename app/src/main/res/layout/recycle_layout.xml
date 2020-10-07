@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <TextView
+            android:id="@+id/statenamec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mobile goes here"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/activec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name goes here"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/confirmedc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email goes here"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/recoveredc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mobile goes here"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
