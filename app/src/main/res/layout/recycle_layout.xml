@@ -8,10 +8,11 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="15dp">
+
         <TextView
             android:id="@+id/statenamec"
             android:layout_width="wrap_content"
@@ -19,6 +20,7 @@
             android:text="state"
             android:textColor="#000000"
             android:textSize="12sp" />
+
         <TextView
             android:id="@+id/activec"
             android:layout_width="wrap_content"
