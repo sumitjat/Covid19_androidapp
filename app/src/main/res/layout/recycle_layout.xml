@@ -31,7 +31,7 @@
             android:id="@+id/confirmedc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirmed
+            android:text="Confirmed"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/recoveredc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recovered"
+            android:text="Reco"
             android:textColor="#000000"
             android:textSize="12sp" />
 
