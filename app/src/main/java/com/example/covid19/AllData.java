@@ -77,6 +77,7 @@ public class AllData extends AppCompatActivity {
                        recoveredcase.add(userdetail.getString("recovered"));
                        confirmedcase.add(userdetail.getString("confirmed"));
                        statename.add(userdetail.getString("state"));
+                       Log.d("test",activecase.get(i-1));
 
                     }
 
