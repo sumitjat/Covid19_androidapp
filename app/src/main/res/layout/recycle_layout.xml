@@ -16,14 +16,14 @@
             android:id="@+id/statenamec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mobile goes here"
+            android:text="state"
             android:textColor="#000000"
             android:textSize="12sp" />
         <TextView
             android:id="@+id/activec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name goes here"
+            android:text="Active"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -31,7 +31,7 @@
             android:id="@+id/confirmedc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="email goes here"
+            android:text="Confirmed
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/recoveredc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mobile goes here"
+            android:text="Recovered"
             android:textColor="#000000"
             android:textSize="12sp" />
 
