@@ -1,5 +1,6 @@
 package com.example.covid19;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
 
     @Override
     public void onBindViewHolder(@NonNull programgolder viewHolder, int position) {
-
+        viewHolder.t1.setTextColor(Color.BLACK);
         viewHolder.t1.setText(statename.get(position));
-        viewHolder.t2.setText(activecase.get(position));
-        viewHolder.t3.setText(confirmedcase.get(position));
-        viewHolder.t4.setText(recoveredcase.get(position));
+        viewHolder.t2.setTextColor(Color.BLACK);
+        viewHolder.t2.setText("Active Cases: " +activecase.get(position));
+        viewHolder.t3.setTextColor(Color.RED);
+        viewHolder.t3.setText("Confirmed: "+confirmedcase.get(position));
+        viewHolder.t4.setTextColor(Color.parseColor("#006400"));
+        viewHolder.t4.setText("Recovered: " +recoveredcase.get(position));
 
     }
 
@@ -57,6 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
         public programgolder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.statenamec);
+
             t2=itemView.findViewById(R.id.activec);
             t3= itemView.findViewById(R.id.confirmedc);
             t4 = itemView.findViewById(R.id.recoveredc);
