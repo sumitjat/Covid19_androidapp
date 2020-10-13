@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:layout_height="wrap_content">
+    android:onClick="click"
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,22 +14,29 @@
         android:orientation="vertical"
         android:padding="15dp">
 
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:text="Button" />
+
         <TextView
             android:id="@+id/statenamec"
             android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="state"
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/activec"
             android:layout_width="match_parent"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Active"
+            android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -36,8 +44,8 @@
             android:id="@+id/confirmedc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="Confirmed"
+            android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -45,9 +53,9 @@
             android:id="@+id/recoveredc"
 
             android:layout_width="match_parent"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Reco"
+            android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -58,7 +66,7 @@
             android:layout_marginTop="1dp"
             android:layout_marginBottom="67dp"
 
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -157,6 +158,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
 
 
         viewHolder.rvSubItem.setRecycledViewPool(viewPool);
+
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewHolder.rvSubItem.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
@@ -174,6 +183,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
     public static class programgolder extends RecyclerView.ViewHolder{
 
         TextView t1,t2,t3,t4;
+        Button button;
         RecyclerView rvSubItem;
 
         public programgolder(@NonNull View itemView) {
@@ -184,6 +194,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
             t3= itemView.findViewById(R.id.confirmedc);
             t4 = itemView.findViewById(R.id.recoveredc);
             rvSubItem=itemView.findViewById(R.id.district_rec);
+            button=itemView.findViewById(R.id.button2);
 
         }
     }
