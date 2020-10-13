@@ -5,6 +5,8 @@ import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.text.Transliterator;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
     Context cont;
 
 
+
     public Context getContext() {
         return context;
     }
@@ -49,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
     private ArrayList<String> recoveredcase = new ArrayList<String>();
 
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+
 
 
     public MyAdapter(ArrayList<String> activecase, ArrayList<String> recoveredcase, ArrayList<String> confirmedcase, ArrayList<String> statename,Context context) {
@@ -159,13 +164,42 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
 
         viewHolder.rvSubItem.setRecycledViewPool(viewPool);
 
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+       viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (viewHolder.rvSubItem.getVisibility() == View.GONE)
+                {   v.setNestedScrollingEnabled(false);
+                   TransitionManager.beginDelayedTransition(viewHolder.cardView,new AutoTransition());
+                    viewHolder.button.setBackgroundResource(R.drawable.arrow_up);
 
-                viewHolder.rvSubItem.setVisibility(View.VISIBLE);
-            }
+
+
+                    viewHolder.rvSubItem.setVisibility(View.VISIBLE);
+                    notifyDataSetChanged();
+                }
+                else
+                {
+                    TransitionManager.beginDelayedTransition(viewHolder.cardView,new AutoTransition());
+                    viewHolder.button.setBackgroundResource(R.drawable.arrow_down);
+                    v.requestFocus();
+
+
+                    viewHolder.rvSubItem.setVisibility(View.GONE);
+                    notifyDataSetChanged();
+                    v.setNestedScrollingEnabled(true);
+
+                }
+
+
+                }
+
+
+
+
+
         });
+
+
     }
 
 
@@ -180,15 +214,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
         return activecase.size();
     }
 
-    public static class programgolder extends RecyclerView.ViewHolder{
+    public static class programgolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1,t2,t3,t4;
         Button button;
         RecyclerView rvSubItem;
+        CardView cardView;
 
         public programgolder(@NonNull View itemView) {
             super(itemView);
             t1=itemView.findViewById(R.id.statenamec);
+            cardView =itemView.findViewById(R.id.card_view);
 
             t2=itemView.findViewById(R.id.activec);
             t3= itemView.findViewById(R.id.confirmedc);
@@ -197,7 +233,33 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
 
             button=itemView.findViewById(R.id.button2);
 
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            if(rvSubItem.getVisibility() == View.GONE) {
+
+                TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
+               button.setBackgroundResource(R.drawable.arrow_up);
+               rvSubItem.setVisibility(View.VISIBLE);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
+                button.setBackgroundResource(R.drawable.arrow_down);
+                rvSubItem.setVisibility(View.GONE);
+
+
+
+            }
+
+
+
+            }
+
         }
     }
 
-}
+
