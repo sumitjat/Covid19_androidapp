@@ -49,7 +49,7 @@ public class SubItemAdapter extends RecyclerView.Adapter<SubItemAdapter.smallhol
         viewHolder.t3.setTextColor(Color.RED);
         viewHolder.t3.setText("Confirmed: "+confirmedcase.get(position));
         viewHolder.t4.setTextColor(Color.parseColor("#006400"));
-        viewHolder.t4.setText("Recovered: " +recoveredcase.get(position));
+        viewHolder.t4.setText("Recovered : " +recoveredcase.get(position));
     }
 
     @Override
