@@ -81,7 +81,7 @@ public class AllData extends AppCompatActivity {
 
                     }
 
-                    mAdapter = new MyAdapter(activecase,recoveredcase,confirmedcase,statename);
+                    mAdapter = new MyAdapter(activecase,recoveredcase,confirmedcase,statename,getApplicationContext());
                     recyclerView.setAdapter(mAdapter);
 
 
