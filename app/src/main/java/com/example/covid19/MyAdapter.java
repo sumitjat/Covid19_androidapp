@@ -47,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
     private ArrayList<String> activecase = new ArrayList<>();
     private ArrayList<String> confirmedcase = new ArrayList<String>();
     private ArrayList<String> recoveredcase = new ArrayList<String>();
-    CustomItemClickListener listener;
+
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
 
@@ -194,6 +194,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
             t3= itemView.findViewById(R.id.confirmedc);
             t4 = itemView.findViewById(R.id.recoveredc);
             rvSubItem=itemView.findViewById(R.id.district_rec);
+
             button=itemView.findViewById(R.id.button2);
 
         }
