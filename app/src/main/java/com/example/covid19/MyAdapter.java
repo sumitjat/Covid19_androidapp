@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static java.security.AccessController.getContext;
 
@@ -109,7 +110,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
         // For now simplicity I am doing all JSON parsing here if I have time I will do all this thing in the Item class which is for this purpose only
         // It's gonna mess here from now on
 
-        String urlJsonObj = "https://api.covid19india.org/data.json";
+        String urlJsonObj = "https://api.covid19india.org/state_district_wise.json";
 
         RequestQueue requestQueue;
 
@@ -120,7 +121,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
             public void onResponse(JSONObject response) {
 //                statename.get(position)
                 try {
-                    JSONArray Statecode = response.getJSONArray("statewise");
+                    JSONObject Statecode = response.getJSONObject(statename.get(position));
+                    JSONObject District=Statecode.getJSONObject("districtData");
 
 //                    private ArrayList<String> statename=new ArrayList<String>();;
                      ArrayList<String> activecas=new ArrayList<String>();
@@ -128,21 +130,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
                     ArrayList<String> recoveredcas=new ArrayList<String>();
                     ArrayList<String> statenam=new ArrayList<String>();
 
-
-                    for (int i = 1; i < Statecode.length(); i++)
+                    Iterator<String> keysIterator = District.keys();
+                    while (keysIterator.hasNext())
                     {
-                        JSONObject userdetail = Statecode.getJSONObject(i);
+                        String keyStr = (String)keysIterator.next();
+                        String valueStr = District.getString(keyStr);
+                        Log.d("TEST",keyStr+"this is mext "+valueStr);
 
-                        Log.d("Sumit",userdetail.getString("active"));
-                        Log.d("sumit",userdetail.getString("state"));
-
+                        JSONObject userdetail = District.getJSONObject(keyStr);
                         activecas.add(userdetail.getString("active"));
                         recoveredcas.add(userdetail.getString("recovered"));
                         confirmedcas.add(userdetail.getString("confirmed"));
-                        statenam.add(userdetail.getString("state"));
-                        Log.d("test",activecase.get(i-1));
+                        statenam.add(keyStr);
 
                     }
+
+
+//                    for (int i = 1; i < Statecode.length(); i++)
+//                    {
+//                      JSONObject userdetail = Statecode.getJSONObject(i);
+//
+//                        Log.d("Sumit",userdetail.getString("active"));
+//                        Log.d("sumit",userdetail.getString("state"));
+//
+//                        activecas.add(userdetail.getString("active"));
+//                        recoveredcas.add(userdetail.getString("recovered"));
+//                        confirmedcas.add(userdetail.getString("confirmed"));
+//                        statenam.add(userdetail.getString("state"));
+//                        Log.d("test",activecase.get(i-1));
+//
+//                    }
 
                     layoutManager = new LinearLayoutManager(
                             viewHolder.rvSubItem.getContext(),
