@@ -1,10 +1,14 @@
 package com.example.covid19;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.icu.text.Transliterator;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.text.Layout;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -34,11 +38,13 @@ import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder>  {
 
 
     private final Context context;
     Context cont;
+
+
 
 
 
@@ -51,17 +57,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
     private ArrayList<String> activecase = new ArrayList<>();
     private ArrayList<String> confirmedcase = new ArrayList<String>();
     private ArrayList<String> recoveredcase = new ArrayList<String>();
+    int i;
+    LinearLayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager1;
 
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
 
 
 
-    public MyAdapter(ArrayList<String> activecase, ArrayList<String> recoveredcase, ArrayList<String> confirmedcase, ArrayList<String> statename,Context context) {
+    public MyAdapter(ArrayList<String> activecase, ArrayList<String> recoveredcase, ArrayList<String> confirmedcase, ArrayList<String> statename, Context context, RecyclerView.LayoutManager layoutManager) {
         this.activecase = activecase;
         this.recoveredcase = recoveredcase;
         this.confirmedcase = confirmedcase;
         this.statename = statename;
         this.context=context;
+        this.layoutManager1=layoutManager;
         }
 
     @NonNull
@@ -134,7 +144,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
 
                     }
 
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(
+                    layoutManager = new LinearLayoutManager(
                             viewHolder.rvSubItem.getContext(),
                             LinearLayoutManager.VERTICAL,
                             false
@@ -145,6 +155,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
 
                     SubItemAdapter subItemAdapter = new SubItemAdapter(activecas,recoveredcas,confirmedcas,statenam);
                     viewHolder.rvSubItem.setAdapter(subItemAdapter);
+
 
 
                 } catch (JSONException e) {
@@ -168,25 +179,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
             @Override
             public void onClick(View v) {
                 if (viewHolder.rvSubItem.getVisibility() == View.GONE)
-                {   v.setNestedScrollingEnabled(false);
+
+                {
+                    v.setNestedScrollingEnabled(false);
                    TransitionManager.beginDelayedTransition(viewHolder.cardView,new AutoTransition());
                     viewHolder.button.setBackgroundResource(R.drawable.arrow_up);
 
-
-
+                    i=position;
                     viewHolder.rvSubItem.setVisibility(View.VISIBLE);
                     notifyDataSetChanged();
+
+
+
                 }
                 else
                 {
                     TransitionManager.beginDelayedTransition(viewHolder.cardView,new AutoTransition());
                     viewHolder.button.setBackgroundResource(R.drawable.arrow_down);
-                    v.requestFocus();
-
-
+                    v.requestFocus(i);
                     viewHolder.rvSubItem.setVisibility(View.GONE);
+
                     notifyDataSetChanged();
                     v.setNestedScrollingEnabled(true);
+                    layoutManager1.scrollToPosition(position);
 
                 }
 
@@ -250,6 +265,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.programgolder> {
                 TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
                 button.setBackgroundResource(R.drawable.arrow_down);
                 rvSubItem.setVisibility(View.GONE);
+
 
 
 

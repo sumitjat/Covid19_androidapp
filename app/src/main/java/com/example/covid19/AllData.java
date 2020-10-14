@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -23,6 +24,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static java.nio.file.attribute.AclEntryType.ALLOW;
+
 public class AllData extends AppCompatActivity {
 
     String Active,Recover,Total,State;
@@ -35,6 +38,9 @@ public class AllData extends AppCompatActivity {
     private ArrayList<String> activecase=new ArrayList<String>();
     private ArrayList<String> confirmedcase=new ArrayList<String>();
     private ArrayList<String> recoveredcase=new ArrayList<String>();
+    Parcelable parce;
+    private final static String KEY = "Some";
+
 
 
 
@@ -45,24 +51,10 @@ public class AllData extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_data);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return false;
-            }
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+//        recyclerView.addItemDecoration(dividerItemDecoration);
+//        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
 
          recyclerView=findViewById(R.id.alldata_rec);
 
@@ -105,8 +97,16 @@ public class AllData extends AppCompatActivity {
 
                     }
 
-                    mAdapter = new MyAdapter(activecase,recoveredcase,confirmedcase,statename,getApplicationContext());
+                    mAdapter = new MyAdapter(activecase,recoveredcase,confirmedcase,statename,getApplicationContext(),layoutManager);
+
                     recyclerView.setAdapter(mAdapter);
+
+
+
+
+                    recyclerView.restoreDefaultFocus();
+
+
 
 
 
@@ -124,5 +124,19 @@ public class AllData extends AppCompatActivity {
         });
         requestQueue.add(jsonArrayRequest);
     }
+
+
+
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//       mAdapter.onSaveInstanceState(outState);
+// }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        mAdapter.onRestoreInstanceState(savedInstanceState);
+//    }
 
 }
